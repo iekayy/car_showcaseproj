@@ -20,7 +20,7 @@ const SearchManufacturer = ({manufacturer,setManufacturer}:SearchManufacturerPro
 
     return(
         <div className="search-manufacturer">
-            <Combobox>
+            <Combobox value={manufacturer} onChange={setManufacturer}>
                 <div className="relative w-full">
                     <ComboboxButton className="absolute top-[14px]">
                         <Image src="car-logo.svg" width={20} height={20} className="ml-4" alt="Car Logo"/>
@@ -48,7 +48,7 @@ const SearchManufacturer = ({manufacturer,setManufacturer}:SearchManufacturerPro
                                     `}
                                     value={item}
                                     >
-                                        {({selected,active})=>(
+                                        {({selected})=>(
                                             <>
                                             <span
                                                 className={`block truncate ${
@@ -60,7 +60,7 @@ const SearchManufacturer = ({manufacturer,setManufacturer}:SearchManufacturerPro
                                                 {selected ? (
                                              <span
                                                 className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                                active ? 'text-white' : 'text-teal-600'
+                                                selected ? 'text-white' : 'text-teal-600'
                                                  }`}
                                             >
                                             </span>
