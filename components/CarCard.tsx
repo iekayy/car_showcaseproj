@@ -3,7 +3,8 @@ import { CarProps } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
 import CustomButton from "./CustomButton";
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
+import CarDetails from "./CarDetails";
 
 interface CarCardProps {
     car:CarProps
@@ -34,7 +35,7 @@ const CarCard = ({car}:CarCardProps)=>{
             </p>
 
             <div className="relative w-full h-40 my-3 object-contain">
-                <Image src="/hero.png" alt="car model" fill priority className="object-contain"/>
+                <Image src={generateCarImageUrl(car)} alt="car model" fill priority className="object-contain"/>
 
             </div>
 
@@ -56,16 +57,19 @@ const CarCard = ({car}:CarCardProps)=>{
                     </div>
                     <div className="flex flex-col justify-center items-center gap-2">
                         <Image src="/gas.svg" width={20} height={20} alt="gas" />
-                        <p className="text-[14px]">
+                        {/* <p className="text-[14px]">
                             {city_mpg} MPG
  
-                        </p>
+                        </p> */}
                     </div>
                     </div>
                     <div className="car-card__btn-container">
                         <CustomButton
                         title="View More"
                         containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+                        textStyles="text-white text-[14px] leading-[17px] font-bold"
+                        rightIcon="/right-arrow.svg"
+                        handleClick={()=>setIsOpen(true)}
                         />
 
                     </div>
@@ -74,6 +78,7 @@ const CarCard = ({car}:CarCardProps)=>{
 
 
                 </div>
+                <CarDetails isOpen = {isOpen} closeModal = {()=>setIsOpen(false)} car={car} />
 
                 
 
